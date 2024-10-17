@@ -7,7 +7,7 @@ import 'dotenv/config';
 export class ChatbotService {
   private readonly apiUrl = `https://${process.env.CONTRACT_ID}.http.msging.net/messages`;
   private readonly headers = {
-    Authorization: `Key ${process.env.API_KEY}`,
+    Authorization: `${process.env.API_KEY}`,
     'Content-Type': 'application/json',
   };
 
@@ -19,10 +19,13 @@ export class ChatbotService {
       content: content,
     };
 
+    console.log('Data =>', data);
+
     try {
       const response = await axios.post(this.apiUrl, data, {
         headers: this.headers,
       });
+      console.log('Response =>', response.data);
       return response.data;
     } catch (error) {
       throw new Error(`Failed to send message: ${error.message}`);
