@@ -6,7 +6,7 @@ export class ChatbotController {
   constructor(private readonly chatbotService: ChatbotService) {}
 
   @Post('send-message')
-  async sendMessage(@Body('to') to: string, @Body('content') content: string) {
-    return this.chatbotService.sendMessage(to, content);
+  async sendMessage(@Body('content') content: string) {
+    return this.chatbotService.sendMessage(content);
   }
 }

@@ -11,10 +11,10 @@ export class ChatbotService {
     'Content-Type': 'application/json',
   };
 
-  async sendMessage(to: string, content: string) {
+  async sendMessage(content: string) {
     const data = {
       id: uuidv4(),
-      to: to,
+      to: `${process.env.CONTRACT_ID}.@msging.net`, // enviar mensagens entre bots e usuários cadastrados
       type: 'text/plain',
       content: content,
     };
