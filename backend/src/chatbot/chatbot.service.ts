@@ -27,6 +27,7 @@ export class ChatbotService {
       });
       console.log('Response =>', response.data);
       return response.data;
+      // fazer validações de erro como 401 e 400
     } catch (error) {
       throw new Error(`Failed to send message: ${error.message}`);
     }
