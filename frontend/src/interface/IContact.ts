@@ -1,4 +1,9 @@
 export interface IContact {
-    identity: string;
     name: string;
+    identity: string;
+    group?: string;
+    lastMessageDate?: string;
+    lastUpdateDate?: string;
+    email?: string;
+    extras?: object;
 }

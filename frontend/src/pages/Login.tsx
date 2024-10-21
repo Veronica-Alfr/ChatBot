@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { getContacts } from '../api/requests';
 
@@ -18,10 +18,11 @@ const Login: React.FC = () => {
         navigate('/');
       }
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response?.status === 401) {
-        setError('A chave da API é inválida');
+      const axiosError = error as AxiosError;
+      if (axiosError.response?.status === 401) {
+        setError('API key is invalid');
       } else {
-        setError('Ocorreu um erro inesperado. Tente novamente.');
+        setError('An unexpected error has occurred. Please try again.');
       }
     }
   };
@@ -29,12 +30,12 @@ const Login: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6">Login</h1>
+        <h1 className="text-2xl font-bold mb-6">Login on your chatbot</h1>
         <input
           type="text"
           value={apiKey}
           onChange={(e) => setApiKey(e.target.value)}
-          placeholder="Coloque aqui a sua API Key"
+          placeholder="Enter your API key here"
           className="w-full p-2 mb-4 border border-gray-300 rounded-md"
         />
         {error && <p className="text-red-500">{error}</p>}

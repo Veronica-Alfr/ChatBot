@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getContacts } from '../api/requests';
-
-interface Contact {
-  identity: string;
-  name: string;
-}
+import { IContact } from '../interface/IContact';
 
 const ContactList: React.FC = () => {
-  const [contacts, setContacts] = useState<Contact[]>([]);
+  const [contacts, setContacts] = useState<IContact[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [totalContacts, setTotalContacts] = useState<number>(0);
   const navigate = useNavigate();
@@ -16,15 +12,16 @@ const ContactList: React.FC = () => {
   
   const query = new URLSearchParams(location.search);
   const page = Number(query.get('page')) || 0;
-  const take = 10; // Number of contacts to load per page
+  const take = 10;
   const skip = page * take;
 
   const fetchContacts = async (skipValue: number) => {
     try {
       const apiKey = localStorage.getItem('token') || '';
       const response = await getContacts(apiKey, skipValue, take);
+
       setContacts(response.data.resource.items);
-      setTotalContacts(response.data.resource.total); // Assuming 'total' is returned for all contacts
+      setTotalContacts(response.data.resource.total);
     } catch (error) {
       setError('Failed to fetch contacts');
       console.error(error);
@@ -59,7 +56,7 @@ const ContactList: React.FC = () => {
       <ul className="space-y-4">
         {contacts.map((contact, index) => (
           <li key={index} className="bg-white p-4 rounded shadow hover:bg-gray-100">
-            <Link to={`/messages/${contact.identity}`} className="text-blue-500 hover:underline">
+            <Link to={`/contact/${contact.identity}`} className="text-blue-500 hover:underline">
               {contact.name || contact.identity}
             </Link>
           </li>
