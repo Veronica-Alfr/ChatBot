@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getMessages } from "../api/requests";
 import { IMessage } from "../interface/IMessage";
-// import { messagesMock } from "../tests/messages/mocks/messagesMock";
 
 const Messages: React.FC = () => {
   const { contactId } = useParams<{ contactId: string }>();
@@ -39,6 +38,7 @@ const Messages: React.FC = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-2xl font-bold mb-6">History Messages</h1>
       <ul className="space-y-4">
         {messages.map((message) => (
           <li key={message.id} className="bg-white p-4 rounded shadow">
@@ -54,25 +54,6 @@ const Messages: React.FC = () => {
           </li>
         ))}
       </ul>
-      {/* <ul>
-        {
-          messagesMock.resource.items.map((message) => (
-            <li key={message.id} className="flex justify-start">
-              <div className="max-w-xs p-4 mb-2 rounded-lg shadow bg-purple-500 text-white">
-                <div>
-                  <strong>From:</strong> {message.from}
-                </div>
-                <div>
-                  <strong>To:</strong> {message.to}
-                </div>
-                <div>
-                  <strong>Content:</strong> {message.content}
-                </div>
-              </div>
-            </li>
-          ))
-        }
-      </ul> */}
     </div>
   );
 };
