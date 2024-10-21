@@ -15,7 +15,7 @@ describe('ContactList Component', () => {
     });
   });
 
-  test('renders contacts and handles pagination correctly', async () => {
+  test('renders contacts and navigation buttons', async () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <Contact />
@@ -23,12 +23,11 @@ describe('ContactList Component', () => {
     );
 
     contactsMock.resource.items.forEach(async (contact) => {
-        expect(await screen.findByText(contact.name)).toBeInTheDocument();
+      expect(await screen.findByText(contact.name)).toBeInTheDocument();
     });
 
     fireEvent.click(screen.getByText('Next'));
 
     fireEvent.click(screen.getByText('Previous'));
-
   });
 });

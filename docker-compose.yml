@@ -1,0 +1,13 @@
+services:
+  frontend:
+    container_name: app_frontend
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    expose:
+      - 5173
+    working_dir: /app-frontend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5173"]
+      timeout: 10s
+      retries: 5
