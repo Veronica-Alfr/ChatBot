@@ -38,19 +38,16 @@ const Messages: React.FC = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-2xl font-bold mb-6">History Messages</h1>
+      <div className="mb-6 p-4 rounded shadow py-6 bg-gray-150">
+        <h1 className="text-3xl font-bold font-mulish text-gray-800 text-shadow">
+          History Messages
+        </h1>
+      </div>
       <ul className="space-y-4">
         {messages.map((message) => (
-          <li key={message.id} className="bg-white p-4 rounded shadow">
-            <div>
-              <strong>From:</strong> {message.from}
-            </div>
-            <div>
-              <strong>To:</strong> {message.to}
-            </div>
-            <div>
-              <strong>Content:</strong> {message.content}
-            </div>
+          <li key={message.id} className="bg-purple-100 p-3 rounded-lg shadow relative max-w-md mx-auto">
+            <div className="text-lg font-semibold mb-1">{message.content}</div>
+            <div className="absolute bottom-1 right-2 text-xs text-gray-500">{message.from}</div>
           </li>
         ))}
       </ul>

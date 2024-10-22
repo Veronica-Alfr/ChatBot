@@ -52,11 +52,13 @@ const ContactList: React.FC = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h2 className="text-2xl font-bold mb-4">Contact List</h2>
-      <ul className="space-y-4">
+      <h1 className="text-4xl text-center font-bold font-mulish mb-6 text-gray-700">
+        Contact List
+      </h1>
+      <ul className="space-y-2 bg-white shadow-md p-4 rounded-lg">
         {contacts.map((contact, index) => (
-          <li key={index} className="bg-white p-4 rounded shadow hover:bg-gray-100">
-            <Link to={`/contact/${contact.identity}`} className="text-blue-500 hover:underline">
+          <li key={index} className="bg-white p-4 rounded hover:bg-gray-100 transition-colors duration-200">
+            <Link to={`/contact/${contact.identity}`} className="text-purple-600 text-lg font-semibold hover:text-purple-800">
               {contact.name || contact.identity}
             </Link>
           </li>
