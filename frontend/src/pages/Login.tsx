@@ -1,30 +1,37 @@
 import React, { useState } from 'react';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { getContacts } from '../api/requests';
+import { getContacts, login } from '../api/requests';
+import { useQueryClient } from '@tanstack/react-query';
 import chatbotImage from '../assets/images/chatbot.png';
 
 const Login: React.FC = () => {
   const [apiKey, setApiKey] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const queryClient = useQueryClient(); // Instância do React Query
+
+  interface ErrorResponse {
+    message: string;
+  }  
 
   const handleLogin = async () => {
     const firstSkip = 0;
     const firstTake = 10;
+
     try {
+      await login(apiKey);
+  
       const response = await getContacts(apiKey, firstSkip, firstTake);
+      console.log('dados em Login =>', response.data.resource);
       if (response.status === 200) {
-        localStorage.setItem('token', apiKey);
+        queryClient.setQueryData(['apiKey'], apiKey);
         navigate('/');
       }
     } catch (error) {
-      const axiosError = error as AxiosError;
-      if (axiosError.response?.status === 401) {
-        setError('API key is invalid');
-      } else {
-        setError('An unexpected error has occurred. Please try again.');
-      }
+      const axiosError = error as AxiosError<ErrorResponse>;
+
+      setError(axiosError.response?.data?.message || 'An unexpected error has occurred. Please try again.');
     }
   };
 

@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import axios from 'axios';
+import { Injectable, UnauthorizedException, InternalServerErrorException } from '@nestjs/common';
+import axios, { AxiosError } from 'axios';
 
 @Injectable()
 export class ContactsService {
@@ -11,7 +11,7 @@ export class ContactsService {
           id: 'random-guid',
           to: 'postmaster@crm.msging.net',
           method: 'get',
-          uri: `/contacts?$skip=${skip}&$take=${take}`
+          uri: `/contacts?$skip=${skip}&$take=${take}`,
         },
         {
           headers: {
@@ -20,9 +20,15 @@ export class ContactsService {
           },
         }
       );
+      console.log('Contacts no back =>', response.data);
       return response.data;
     } catch (error) {
-      throw new Error(`Failed to fetch contacts: ${error.message}`);
+      const axiosError = error as AxiosError;
+      if (axiosError.response?.status === 401) {
+        throw new UnauthorizedException('API Key is invalid');
+      } else {
+        throw new InternalServerErrorException(`Failed to fetch contacts: ${axiosError.message}`);
+      }
     }
   }
 }

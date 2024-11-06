@@ -10,8 +10,8 @@ export class AuthController {
   async login(@Body('apiKey') apiKey: string, @Res() res: Response) {
     const token = await this.authService.generateToken(apiKey);
 
-    res.cookie('authToken', token, { httpOnly: true, secure: true });
+    res.cookie('authToken', token, { httpOnly: true });
 
-    return res.send({ message: 'Sucessfully logged in' });
+    return res.send({ token });
   }
 }
