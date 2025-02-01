@@ -17,15 +17,15 @@
   
 ## 👉 With Docker
 
-    - :warning: Antes de começar, seu docker-compose precisa estar na versão 2.29 e o docker na versão 27.2 de preferência.
+    ⚠ Antes de começar, seu docker-compose precisa estar na versão 2.29 e o docker na versão 27.2 de preferência.
 
-    - :information_source: Suba o projeto completo usando o comando docker-compose up --build na raiz do projeto.
+    ℹ️ Suba o projeto completo usando o comando docker-compose up --build na raiz do projeto.
 
     - Esses serviços inicializarão o contêiner chamado app_frontend.
 
     - A partir daqui, você pode executar o contêiner via CLI ou abri-los no VS Code.
 
-    - :information_source: As dependências são instaladas por meio do Dockerfile, que é lido pelo Docker.
+    ℹ As dependências são instaladas por meio do Dockerfile, que é lido pelo Docker.
 
     ✨ Dica: A extensão Remote - Containers é recomendada para que você possa desenvolver sua aplicação no container Docker diretamente no VS Code, assim como você faz com seus arquivos locais.
 
