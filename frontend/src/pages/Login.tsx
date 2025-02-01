@@ -13,18 +13,18 @@ const Login: React.FC = () => {
 
   interface ErrorResponse {
     message: string;
-  }  
+  }
 
   const handleLogin = async () => {
     const firstSkip = 0;
     const firstTake = 10;
 
     try {
-      await login(apiKey);
-  
+      const token = await login(apiKey);
+      queryClient.setQueryData(['token'], token);
+      
       const response = await getContacts(apiKey, firstSkip, firstTake);
-      console.log('dados em Login =>', response.data.resource);
-      if (response.status === 200) {
+      if (response.status === 201) {
         queryClient.setQueryData(['apiKey'], apiKey);
         navigate('/');
       }
@@ -45,13 +45,16 @@ const Login: React.FC = () => {
         <input
           type="text"
           value={apiKey}
-          onChange={(e) => setApiKey(e.target.value)}
+          onChange={(e) => {
+            console.log('API Key input changed:', e.target.value);
+            setApiKey(e.target.value)
+          }}
           placeholder="Enter your API key here"
           className="w-full p-2 mb-4 border border-gray-300 rounded-md"
         />
         {error && <p className="text-red-500">{error}</p>}
         <button
-          onClick={handleLogin}
+          onClick={() => handleLogin()}
           className="w-full bg-purple-500 text-white hover:bg-purple-600 p-2 mt-1 rounded-md text-lg font-mulish text-500"
         >
           Login

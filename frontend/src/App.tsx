@@ -8,7 +8,7 @@ import { useAuth } from "./utils/useAuth";
 const queryClient = new QueryClient();
 
 const ProtectedRoute = ({ element }: { element: JSX.Element }) => {
-  const isAuthenticated = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return isAuthenticated ? element : <Navigate to="/login" />;
 };

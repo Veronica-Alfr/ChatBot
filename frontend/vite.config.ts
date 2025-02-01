@@ -10,11 +10,11 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/auth': {
-        target: 'http://localhost:3000',
+        target: 'http://app_backend:3001',
         changeOrigin: true,
       },
       '/contacts': {
-        target: 'http://localhost:3000',
+        target: 'http://app_backend:3001',
         changeOrigin: true,
       },
     },

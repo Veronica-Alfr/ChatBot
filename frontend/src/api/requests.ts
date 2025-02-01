@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-// import { v4 as uuidv4 } from 'uuid';
 
 export const login = async (apiKey: string) => {
   try {
@@ -9,8 +8,9 @@ export const login = async (apiKey: string) => {
       { apiKey },
       { withCredentials: true }
     );
-    console.log('Autenticado com sucesso', response.data);
-    return response.data.token;
+
+    const { token } = response.data;
+    return token;
     
   } catch (error) {
     throw error;
@@ -20,9 +20,14 @@ export const login = async (apiKey: string) => {
 export const getContacts = async (apiKey: string, skip: number, take: number) => {
   try {
     const response = await axios.post(
-      '/contacts',
-      { apiKey, skip, take },
-      { withCredentials: true }
+      `/contacts?skip=${skip}&take=${take}`,
+      {},
+      {
+        headers: {
+          Authorization: apiKey,
+        },
+        withCredentials: true
+      }
     );
     console.log('dados em getContacts =>', response.data);
     return response;
