@@ -29,7 +29,7 @@ export const getContacts = async (apiKey: string, skip: number, take: number) =>
         withCredentials: true
       }
     );
-    console.log('dados em getContacts =>', response.data);
+    console.log('items em getContacts =>', response.data.resource.items);
     return response;
   } catch (error) {
     throw error;

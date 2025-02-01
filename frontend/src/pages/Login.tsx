@@ -24,6 +24,7 @@ const Login: React.FC = () => {
       queryClient.setQueryData(['token'], token);
       
       const response = await getContacts(apiKey, firstSkip, firstTake);
+      console.log('status =>', response.status);
       if (response.status === 201) {
         queryClient.setQueryData(['apiKey'], apiKey);
         navigate('/');

@@ -8,11 +8,13 @@ export const useAuth = () => {
   useEffect(() => {
     const checkAuth = () => {
       const token = queryClient.getQueryData<string>(['token']);
+      console.log('token in useAuth =>', token);
       setIsAuthenticated(!!token);
     };
 
     checkAuth();
   }, [queryClient]);
 
+  console.log('isAuthenticated =>', isAuthenticated);
   return { isAuthenticated };
 };
