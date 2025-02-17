@@ -1,5 +1,5 @@
 <main>
-  <h1 align="center">White Wall Chatbot</h1>
+  <h1 align="center">Blip Chatbot</h1>
 
   <p>
     O projeto faz a consumação da API de Chatbot da Blip. No qual ele recebe a chave da API no input na tela de Login, e se sucesso é possível visualizar a lista dos contatos e suas mensagens trocadas com o bot.
@@ -15,7 +15,7 @@
 
   <details>
   
-## 👉 With Docker
+## 👉 Com Docker
 
     - :warning: Antes de começar, seu docker-compose precisa estar na versão 2.29 e o docker na versão 27.2 de preferência.
 
@@ -31,7 +31,7 @@
 
 <br />
 
-## 👉 Without Docker
+## 👉 Sem Docker
 
     > :information_source: Instale as dependências com `npm install` no diretório frontend/.
 
