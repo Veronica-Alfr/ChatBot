@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   const [apiKey, setApiKey] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const queryClient = useQueryClient(); // Instância do React Query
+  const queryClient = useQueryClient();
 
   interface ErrorResponse {
     message: string;

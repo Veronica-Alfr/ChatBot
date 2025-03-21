@@ -44,20 +44,22 @@ export const useContacts = (apiKey: string, skip: number, take: number) => {
   });
 };
 
-// export const getMessages = async (apiKey: string, contactId: string) => {
-//   const response = await axios.post(
-//     'https://msging.net/commands',
-//     {
-//       id: uuidv4(),
-//       method: 'get',
-//       uri: `/threads/${contactId}?refreshExpiredMedia=true`,
-//     },
-//     {
-//       headers: {
-//         Authorization: apiKey,
-//         'Content-Type': 'application/json',
-//       },
-//     }
-//   );
-//   return response;
-// };
+export const getMessages = async (apiKey: string, contactId: string) => {
+  try {
+    const response = await axios.post(
+      `/contacts/${contactId}`,
+      {apiKey, contactId},
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const useMessages = (apiKey: string, contactId: string) => {
+  return useQuery({
+    queryKey: ['messages', apiKey, contactId],
+    queryFn: () => getMessages(apiKey, contactId),
+    enabled: !!apiKey,
+  });
+};

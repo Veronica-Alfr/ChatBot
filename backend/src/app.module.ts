@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ContactsModule } from './contacts/contacts.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     ContactsModule, 
-    AuthModule
+    AuthModule, MessagesModule
   ],
   controllers: [AppController],
   providers: [AppService],

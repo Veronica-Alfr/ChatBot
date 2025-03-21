@@ -17,10 +17,12 @@ const ContactList: React.FC = () => {
   const skip = page * take;
 
   if (!apiKey) {
-    return <div>Error: API key is missing. Please log in again.</div>;
+    return <div>You need login!</div>;
+    // melhoria: redirecionar para a tela de login, mas caso tenha vindo da tela /contacts, deve aparecer um popup
+    // com a msg: "You need login!"
   }
 
-  const { data: contacts, error, isLoading } = useContacts(apiKey, skip, take);
+  const { data: contacts, error } = useContacts(apiKey, skip, take);
 
   console.log('dados em Contacts =>', contacts?.data.resource);
 
@@ -28,7 +30,6 @@ const ContactList: React.FC = () => {
     navigate(`/?page=${newPage}`);
   };
 
-  if (isLoading) return <div>Loading...</div>;
   if (error) return <div className="text-red-500">Error: {(error as Error).message}</div>;
 
   const totalContacts = contacts?.data.resource.total || 0;
