@@ -8,7 +8,7 @@
   <h3>Status do Projeto</h3>
   
     Front-end CMV finalizado ✅, melhorias a caminho 🧐👩🏽‍💻
-    Back-end em progresso: fase de estruturação 👩🏽‍💻🛠️🚀
+    Back-end em progresso: falta pouquissimo para finalizar 👩🏽‍💻🛠️🚀
 
 
 <summary><h3>🐋 Rodando no Docker vs Localmente</h3></summary>
