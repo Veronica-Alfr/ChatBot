@@ -8,7 +8,7 @@
   <h3>Status do Projeto</h3>
   
     Front-end CMV finalizado ✅, melhorias a caminho 🧐👩🏽‍💻
-    Back-end em progresso: fase de estruturação 👩🏽‍💻🛠️🚀
+    Back-end em progresso: falta pouquissimo para finalizar 👩🏽‍💻🛠️🚀
 
 
 <summary><h3>🐋 Rodando no Docker vs Localmente</h3></summary>
@@ -17,15 +17,15 @@
   
 ## 👉 Com Docker
 
-    - :warning: Antes de começar, seu docker-compose precisa estar na versão 2.29 e o docker na versão 27.2 de preferência.
+    ⚠ Antes de começar, seu docker-compose precisa estar na versão 2.29 e o docker na versão 27.2 de preferência.
 
-    - :information_source: Suba o projeto completo usando o comando docker-compose up --build na raiz do projeto.
+    ⚠ Suba o projeto completo usando o comando docker-compose up --build na raiz do projeto.
 
     - Esses serviços inicializarão o contêiner chamado app_frontend.
 
     - A partir daqui, você pode executar o contêiner via CLI ou abri-los no VS Code.
 
-    - :information_source: As dependências são instaladas por meio do Dockerfile, que é lido pelo Docker.
+    ℹ️ As dependências são instaladas por meio do Dockerfile que é lido pelo Docker.
 
     ✨ Dica: A extensão Remote - Containers é recomendada para que você possa desenvolver sua aplicação no container Docker diretamente no VS Code, assim como você faz com seus arquivos locais.
 
@@ -35,11 +35,11 @@
 
     > :information_source: Instale as dependências com `npm install` no diretório frontend/.
 
-    - **:warning: Atenção:** Não execute o comando npm audit fix! Ele atualiza várias dependências do projeto que podem causar conflitos.
+    ⚠ Não execute o comando npm audit fix! Ele atualiza várias dependências do projeto que podem causar conflitos.
 
-    - **✨ Dica:** Para executar o projeto dessa forma, você deve ter o node instalado no seu computador.
+    - ✨ Dica: Para executar o projeto dessa forma, você deve ter o node instalado no seu computador.
 
-    - **:warning: Espera-se que a versão do node usada esteja entre as mais recentes (v20+).
+    ⚠ Espera-se que a versão do node usada esteja entre as mais recentes (v20+).
 
     - Para executar o frontend, use o comando `npm run dev` em seu diretório.
 

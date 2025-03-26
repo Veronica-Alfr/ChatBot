@@ -1,40 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { getContacts } from '../api/requests';
+import { useQueryClient } from '@tanstack/react-query';
+import { useContacts } from '../api/requests';
 import { IContact } from '../interface/IContact';
 
+
 const ContactList: React.FC = () => {
-  const [contacts, setContacts] = useState<IContact[]>([]);
-  const [error, setError] = useState<string | null>(null);
-  const [totalContacts, setTotalContacts] = useState<number>(0);
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
+  const apiKey = queryClient.getQueryData<string>(['apiKey']);
+  console.log('apiKey on Contacts.tsx =>', apiKey);
   
   const query = new URLSearchParams(location.search);
   const page = Number(query.get('page')) || 0;
   const take = 10;
   const skip = page * take;
 
-  const fetchContacts = async (skipValue: number) => {
-    try {
-      const apiKey = localStorage.getItem('token') || '';
-      const response = await getContacts(apiKey, skipValue, take);
+  if (!apiKey) {
+    return <div>You need login!</div>;
+    // melhoria: redirecionar para a tela de login, mas caso tenha vindo da tela /contacts, deve aparecer um popup
+    // com a msg: "You need login!"
+  }
 
-      setContacts(response.data.resource.items);
-      setTotalContacts(response.data.resource.total);
-    } catch (error) {
-      setError('Failed to fetch contacts');
-      console.error(error);
-    }
-  };
+  const { data: contacts, error } = useContacts(apiKey, skip, take);
 
-  useEffect(() => {
-    fetchContacts(skip);
-  }, [skip]);
+  console.log('dados em Contacts =>', contacts?.data.resource);
 
   const handlePageChange = (newPage: number) => {
     navigate(`/?page=${newPage}`);
   };
+
+  if (error) return <div className="text-red-500">Error: {(error as Error).message}</div>;
+
+  const totalContacts = contacts?.data.resource.total || 0;
+  const allContacts = contacts?.data.resource.items || [];
 
   const totalPages = Math.ceil(totalContacts / take);
   const pages = Array.from({ length: totalPages }, (_, i) => i);
@@ -46,17 +46,13 @@ const ContactList: React.FC = () => {
     return false;
   });
 
-  if (error) {
-    return <div className="text-red-500">Error: {error}</div>;
-  }
-
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-4xl text-center font-bold font-mulish mb-6 text-gray-700">
         Contact List
       </h1>
       <ul className="space-y-2 bg-white shadow-md p-4 rounded-lg">
-        {contacts.map((contact, index) => (
+        {allContacts.map((contact: IContact, index: number) => (
           <li key={index} className="bg-white p-4 rounded hover:bg-gray-100 transition-colors duration-200">
             <Link to={`/contact/${contact.identity}`} className="text-purple-600 text-lg font-semibold hover:text-purple-800">
               {contact.name || contact.identity}

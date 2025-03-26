@@ -7,6 +7,16 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   server: {
     host: true,
-    port: 5173
+    port: 5173,
+    proxy: {
+      '/auth': {
+        target: 'http://app_backend:3001',
+        changeOrigin: true,
+      },
+      '/contacts': {
+        target: 'http://app_backend:3001',
+        changeOrigin: true,
+      },
+    },
   },
 })

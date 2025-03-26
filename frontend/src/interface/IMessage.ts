@@ -4,5 +4,7 @@ export interface IMessage {
     content: string;
     from: string;
     to: string;
-    metadata?: object;
+    metadata: {
+        timestamp: string;
+    };
 }
