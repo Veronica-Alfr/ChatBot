@@ -17,6 +17,20 @@ export const login = async (apiKey: string) => {
   }
 };
 
+export const validateApiKey = async (apiKey: string) => {
+  try {
+    const response = await axios.get('/auth/validate-token', {
+      headers: {
+        Authorization: apiKey,
+      },
+      withCredentials: true,
+    });
+    return response.data.apiKey;
+  } catch (error) {
+    throw new Error('Invalid API Key');
+  }
+};
+
 export const getContacts = async (apiKey: string, skip: number, take: number) => {
   try {
     const response = await axios.post(
@@ -29,7 +43,6 @@ export const getContacts = async (apiKey: string, skip: number, take: number) =>
         withCredentials: true
       }
     );
-    console.log('items em getContacts =>', response.data.resource.items);
     return response;
   } catch (error) {
     throw error;
@@ -49,7 +62,14 @@ export const getMessages = async (apiKey: string, contactId: string) => {
     const response = await axios.post(
       `/contacts/${contactId}`,
       {apiKey, contactId},
+      // {
+      //   headers: {
+      //     Authorization: apiKey,
+      //   },
+      //   withCredentials: true
+      // }
     );
+    console.log('data em getMessages =>', response.data);
     return response;
   } catch (error) {
     throw error;

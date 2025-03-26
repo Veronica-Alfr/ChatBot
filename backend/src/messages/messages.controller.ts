@@ -6,7 +6,10 @@ export class MessagesController {
     constructor(private readonly messagesService: MessagesService) {}
 
     @Get(':contactId')
-    async getMessages(@Param('contactId') contactId: string, @Headers('authorization') apiKey: string) {
+    async getMessages(
+        @Param('contactId') contactId: string, 
+        @Headers('Authorization') apiKey: string
+    ) {
         if (!apiKey) {
             throw new BadRequestException('API key is required');
         }

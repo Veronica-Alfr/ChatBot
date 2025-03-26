@@ -4,6 +4,8 @@ import axios, { AxiosError } from 'axios';
 @Injectable()
 export class MessagesService {
   async getMessages(apiKey: string, contactId: string) {
+    console.log('contactId on back =>', contactId);
+    console.log('apiKey on back =>', apiKey);
     try {
       const response = await axios.post(
         'https://msging.net/commands',

@@ -20,7 +20,7 @@ export class ContactsService {
           },
         }
       );
-      console.log('Contacts no back =>', response.data); // .items?
+      console.log('Contacts no back =>', response.data);
       return response.data;
     } catch (error) {
       const axiosError = error as AxiosError;
