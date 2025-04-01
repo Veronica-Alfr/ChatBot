@@ -50,7 +50,7 @@
 
   <h3>🛠 Tecnologias</h3>
   
-  <p>As tecnologias usadas foram: React, TS, Hooks, Jest, Docker, Eslint, Tailwind CSS e Vite.</p>
+  <p>As tecnologias usadas foram: React, TS, Hooks, Jest, Docker, Tailwind CSS, Vite, Node, Nest, JWT, Axios, Eslint, Prettier.</p>
 
   <h3>Author</h3>
 
