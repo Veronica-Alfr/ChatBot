@@ -2,7 +2,7 @@
   <h1 align="center">Blip Chatbot</h1>
 
   <p>
-    O projeto faz a consumação da API de Chatbot da Blip. No qual ele recebe a chave da API no input na tela de Login, e se sucesso é possível visualizar a lista dos contatos e suas mensagens trocadas com o bot.
+    O projeto faz a consumação da API de Chatbot da Blip. No qual ele recebe a chave da API no input na tela de Login (contém autenticação), e se sucesso é possível visualizar a lista dos contatos e suas mensagens trocadas com o bot.
   </p>
 
   <h3>Status do Projeto</h3>
