@@ -1,6 +1,8 @@
 <main>
   <h1 align="center">Blip Chatbot</h1>
 
+  ![GIF do Projeto](public/images/Your_Blip_ChatBot.gif)
+
   <p>
     O projeto faz a consumação da API de Chatbot da Blip. No qual ele recebe a chave da API no input na tela de Login (contém autenticação), e se sucesso é possível visualizar a lista dos contatos e suas mensagens trocadas com o bot.
   </p>
